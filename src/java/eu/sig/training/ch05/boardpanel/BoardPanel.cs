@@ -1,10 +1,4 @@
-package eu.sig.training.ch05.boardpanel;
-
-import java.awt.Graphics;
-import java.util.List;
-
 public class BoardPanel {
-    @SuppressWarnings("unused")
     // tag::render[]
     /**
      * Renders a single square on the given graphics context on the specified
@@ -23,33 +17,41 @@ public class BoardPanel {
      * @param h
      *            The height of this square (in pixels).
      */
-    private void render(Square square, Graphics g, int x, int y, int w, int h) {
-        square.getSprite().draw(g, x, y, w, h);
-        for (Unit unit : square.getOccupants()) {
-            unit.getSprite().draw(g, x, y, w, h);
+    private void render(Square square, Graphics graphics) {
+        square.sprite.draw(graphics);
+        foreach (Unit unit in square.getOccupants()) {
+            unit.sprite.draw(graphics);
         }
     }
-    // end::render[]
 
     private class Sprite {
-        @SuppressWarnings("unused")
-        public void draw(Graphics g, int x, int y, int w, int h) {
+        public void draw(Graphics graphics, Unit unit) {
 
         }
     }
 
     private class Unit {
-        public Sprite getSprite() {
-            return null;
-        }
+        Point point {get;}
+        Bounds bounds {get;}
+        Sprite sprite {get;}
     }
 
-    private class Square extends Unit {
-
-        public List<Unit> getOccupants() {
-            return null;
-        }
-
+    private class Square : Unit {
+        List<Unit> occupants {get;}
     }
 
+    private class Point{
+        public int x;
+        public int y;
+    }
+
+    private class Bounds
+    {
+        public int width;
+        public int height;
+    }
 }
+
+
+
+
