@@ -1,22 +1,4 @@
 public class BoardPanel {
-    // tag::render[]
-    /**
-     * Renders a single square on the given graphics context on the specified
-     * rectangle.
-     * 
-     * @param square
-     *            The square to render.
-     * @param g
-     *            The graphics context to draw on.
-     * @param x
-     *            The x position to start drawing.
-     * @param y
-     *            The y position to start drawing.
-     * @param w
-     *            The width of this square (in pixels).
-     * @param h
-     *            The height of this square (in pixels).
-     */
     private void render(Square square, Graphics graphics) {
         square.sprite.draw(graphics);
         foreach (Unit unit in square.getOccupants()) {
