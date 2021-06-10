@@ -1,13 +1,10 @@
-package eu.sig.training.ch04;
-
-// tag::CheckingAccount[]
-public class CheckingAccount {
-    private static final float INTEREST_PERCENTAGE = 0.01f;
+public class CheckingAccount : BankAccount
+{
+    private static readonly float INTEREST_PERCENTAGE = 0.01f;
     private Money balance = new Money();
     private int transferLimit = 100;
 
-    public Transfer makeTransfer(String counterAccount, Money amount)
-        throws BusinessException {
+    public Transfer makeTransfer(String counterAccount, Money amount){
         // 1. Check withdrawal limit:
         if (amount.greaterThan(this.transferLimit)) {
             throw new BusinessException("Limit exceeded!");
@@ -37,5 +34,5 @@ public class CheckingAccount {
             balance.substract(interest);
         }
     }
+    
 }
-// end::CheckingAccount[]

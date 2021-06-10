@@ -1,13 +1,10 @@
-package eu.sig.training.ch04;
-
-// tag::SavingsAccount[]
-public class SavingsAccount {
-    private static final float INTEREST_PERCENTAGE = 0.04f;
+public class SavingsAccount : BankAccount
+{
+    private static readonly float INTEREST_PERCENTAGE = 0.04f;
     private Money balance = new Money();
     private CheckingAccount registeredCounterAccount;
 
-    public Transfer makeTransfer(String counterAccount, Money amount) 
-        throws BusinessException {
+    public Transfer makeTransfer(String counterAccount, Money amount) {
         // 1. Assuming result is 9-digit bank account number, validate 11-test:
         int sum = 0; // <1>
         for (int i = 0; i < counterAccount.length(); i++) {
@@ -15,6 +12,8 @@ public class SavingsAccount {
             int characterValue = Character.getNumericValue(character);
             sum = sum + (9 - i) * characterValue;
         }
+
+        
         if (sum % 11 == 0) {
             // 2. Look up counter account and make transfer object:
             CheckingAccount acct = Accounts.findAcctByNumber(counterAccount);
@@ -34,5 +33,5 @@ public class SavingsAccount {
     public void addInterest() {
      
     }
+
 }
-// end::SavingsAccount[]
